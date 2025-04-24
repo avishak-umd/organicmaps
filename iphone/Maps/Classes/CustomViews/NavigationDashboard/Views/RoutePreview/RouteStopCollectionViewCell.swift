@@ -6,6 +6,7 @@ final class RouteStopCollectionViewCell: UICollectionViewCell {
     let image: UIImage
     let imageStyle: GlobalStyleSheet
     let isPlaceholder: Bool
+    let isCloseButtonVisible: Bool
     let onCloseHandler: (() -> Void)?
   }
 
@@ -112,7 +113,7 @@ final class RouteStopCollectionViewCell: UICollectionViewCell {
     logoImageView.setStyleAndApply(viewModel.imageStyle)
     didTapClose = viewModel.onCloseHandler
     titleLabel.setFontStyleAndApply(.semibold14, color:  viewModel.isPlaceholder ? .blackSecondary : .blackPrimary)
-    closeButton.isHidden = viewModel.isPlaceholder
+    closeButton.isHidden = !viewModel.isCloseButtonVisible
   }
 
   func updateImage(with image: UIImage, style: GlobalStyleSheet) {
