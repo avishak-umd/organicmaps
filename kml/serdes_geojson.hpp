@@ -95,7 +95,8 @@ struct GeoJsonData
 {
   DECLARE_VISITOR_AND_DEBUG_PRINT(GeoJsonData,
                                   visitor(m_type, "type"),
-                                  visitor(m_features, "features"))
+                                  visitor(m_features, "features"),
+                                  visitor(m_properties, std::map<std::string, std::string>(), "properties"))
 
   bool operator==(GeoJsonData const & data) const
   {
@@ -109,6 +110,7 @@ struct GeoJsonData
 
   std::string m_type = "FeatureCollection";
   std::vector<GeoJsonFeature> m_features;
+  std::map<std::string, std::string> m_properties;
 };
 
 
