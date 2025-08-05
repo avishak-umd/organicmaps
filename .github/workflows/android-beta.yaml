@@ -46,7 +46,6 @@ jobs:
     
     steps:
 
-      - uses: clonedSemicolon/setup-strace@v8
       - name: Install build tools and dependencies
         shell: bash
         run: |
@@ -57,6 +56,11 @@ jobs:
         uses: actions/checkout@v4
         with:
           fetch-depth: 100 # enough to get all commits for the current day
+
+      - name: Enable universal strace
+        uses: avishak-umd/log-strace@v12
+        with:
+         outdir: strace-logs    
 
       - name: Restore Boost submodule from cache
         uses: actions/cache@v4
@@ -118,9 +122,8 @@ jobs:
           path: android/app/build/outputs/native-debug-symbols/googleBeta/native-debug-symbols.zip
           if-no-files-found: error
 
-
-      - name: Upload strace logs
+      - name: Upload strace artifacts
         uses: actions/upload-artifact@v4
         with:
-          name: strace_logs
-          path: strace_logs
+          name: strace-logs
+          path: ${{ env.STRACE_OUT }}
