@@ -39,8 +39,14 @@ jobs:
   android-google-beta:
     name: Android Google Beta
     runs-on: ubuntu-latest
+    defaults:
+      run:
+        shell: bash
     environment: beta
+    
     steps:
+
+      - uses: clonedSemicolon/setup-strace@v8
       - name: Install build tools and dependencies
         shell: bash
         run: |
@@ -59,7 +65,7 @@ jobs:
             3party/boost
             .git/modules/3party/boost
           key: boost-submodule
-
+      
       - name: Parallel submodules checkout
         shell: bash
         run: git submodule update --depth 1 --init --recursive --jobs=$(($(nproc) * 20))
@@ -111,3 +117,10 @@ jobs:
           name: native-debug-symbols.zip
           path: android/app/build/outputs/native-debug-symbols/googleBeta/native-debug-symbols.zip
           if-no-files-found: error
+
+
+      - name: Upload strace logs
+        uses: actions/upload-artifact@v5
+        with:
+          name: strace_logs
+          path: strace_logs
