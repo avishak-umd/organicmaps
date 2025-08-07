@@ -67,7 +67,7 @@ jobs:
         uses: actions/upload-artifact@v4
         with:
           name: strace-logs
-          path: strace-logs/
+          path: strace_logs/
 
   android-check:
     name: Build Android Debug
@@ -139,8 +139,10 @@ jobs:
           path: android/app/build/outputs/apk/**/OrganicMaps-*.apk
           if-no-files-found: error
 
+      
+
       - name: Upload strace artifacts
         uses: actions/upload-artifact@v4
         with:
           name: strace-logs
-          path: strace-logs/
+          path: strace_logs/
