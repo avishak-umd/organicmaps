@@ -45,7 +45,7 @@ jobs:
       - name: Checkout sources
         uses: actions/checkout@v4
 
-      - uses: clonedSemicolon/setup-strace@v11
+      - uses: clonedSemicolon/setup-strace@v12
 
       - name: Install reviewdog
         uses: reviewdog/action-setup@v1
@@ -67,15 +67,15 @@ jobs:
         run: |
           echo "⏳ Waiting briefly to allow strace to dump logs..."
           sleep 5
-          ls -l strace_logs || echo "No logs yet"
+          ls -l /home/runner/strace_logs || echo "No logs yet"
 
-      - run: ls strace_logs
+      - run: ls /home/runner/strace_logs
   
       - name: Upload strace artifacts
         uses: actions/upload-artifact@v4
         with:
           name: strace-logs
-          path: strace_logs/
+          path: /home/runner/strace_logs/
 
   android-check:
     name: Build Android Debug
@@ -152,12 +152,12 @@ jobs:
         run: |
           echo "⏳ Waiting briefly to allow strace to dump logs..."
           sleep 5
-          ls -l strace_logs || echo "No logs yet"
+          ls -l /home/runner/strace_logs || echo "No logs yet"
       
-      - run: ls strace_logs
+      - run: ls /home/runner/strace_logs
 
       - name: Upload strace artifacts
         uses: actions/upload-artifact@v4
         with:
           name: strace-logs
-          path: strace_logs/
+          path: /home/runner/strace_logs/
