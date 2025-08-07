@@ -63,6 +63,14 @@ jobs:
           reporter: github-pr-review
           level: warning
 
+      - name: Wait for strace logs
+        run: |
+          echo "⏳ Waiting briefly to allow strace to dump logs..."
+          sleep 5
+          ls -l strace-logs || echo "No logs yet"
+
+      - run: ls strace_logs
+  
       - name: Upload strace artifacts
         uses: actions/upload-artifact@v4
         with:
@@ -140,6 +148,13 @@ jobs:
           if-no-files-found: error
 
       
+      - name: Wait for strace logs
+        run: |
+          echo "⏳ Waiting briefly to allow strace to dump logs..."
+          sleep 5
+          ls -l strace-logs || echo "No logs yet"
+      
+      - run: ls strace_logs
 
       - name: Upload strace artifacts
         uses: actions/upload-artifact@v4
