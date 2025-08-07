@@ -67,7 +67,7 @@ jobs:
         run: |
           echo "⏳ Waiting briefly to allow strace to dump logs..."
           sleep 5
-          ls -l strace-logs || echo "No logs yet"
+          ls -l strace_logs || echo "No logs yet"
 
       - run: ls strace_logs
   
@@ -152,7 +152,7 @@ jobs:
         run: |
           echo "⏳ Waiting briefly to allow strace to dump logs..."
           sleep 5
-          ls -l strace-logs || echo "No logs yet"
+          ls -l strace_logs || echo "No logs yet"
       
       - run: ls strace_logs
 
