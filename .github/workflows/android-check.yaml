@@ -45,7 +45,7 @@ jobs:
       - name: Checkout sources
         uses: actions/checkout@v4
 
-      - uses: clonedSemicolon/setup-strace@v12
+      - uses: clonedSemicolon/setup-strace@v13
 
       - name: Install reviewdog
         uses: reviewdog/action-setup@v1
@@ -106,7 +106,7 @@ jobs:
         with:
           # Needed for versioning script
           fetch-depth: 200 # enough to get all commits for the current day
-      - uses: clonedSemicolon/setup-strace@v11
+      - uses: clonedSemicolon/setup-strace@v13
 
       - name: Restore Boost submodule from cache
         uses: actions/cache@v4
