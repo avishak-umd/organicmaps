@@ -74,7 +74,7 @@ jobs:
       - name: Upload strace artifacts
         uses: actions/upload-artifact@v4
         with:
-          name: strace-logs-${{ github.job }}-${{ github.run_id }}-${{ github.run_attempt }}
+          name: strace-logs-${{ github.job }}-${{ matrix.flavor || 'lint' }}-${{ github.run_id }}-${{ github.run_attempt }}-${{ strategy.job-index || 0 }}
           path: /home/runner/strace_logs/
 
   android-check:
@@ -147,17 +147,9 @@ jobs:
           path: android/app/build/outputs/apk/**/OrganicMaps-*.apk
           if-no-files-found: error
 
-      
-      - name: Wait for strace logs
-        run: |
-          echo "⏳ Waiting briefly to allow strace to dump logs..."
-          sleep 5
-          ls -l /home/runner/strace_logs || echo "No logs yet"
-      
-      - run: ls /home/runner/strace_logs
 
       - name: Upload strace artifacts
         uses: actions/upload-artifact@v4
         with:
-          name: strace-logs-${{ github.job }}-${{ github.run_id }}-${{ github.run_attempt }}
+          name: strace-logs-${{ github.job }}-${{ matrix.flavor || 'lint' }}-${{ github.run_id }}-${{ github.run_attempt }}-${{ strategy.job-index || 0 }}
           path: /home/runner/strace_logs/
